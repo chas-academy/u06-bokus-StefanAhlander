@@ -12,7 +12,7 @@
 </head>
 <body>
   <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5">
       <ul class="navbar-nav">
         <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
           <a class="nav-link" href="/">Home</a>
@@ -28,8 +28,9 @@
         </li>
       </ul>
     </nav>
-  </div>
+
 
   @yield('content')
+  </div>
 </body>
 </html>

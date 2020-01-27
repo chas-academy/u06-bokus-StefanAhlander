@@ -7,7 +7,7 @@
 
 @section('content')
 
-<h1 class="text-center">Welcome to Bokus</h1>
+<h1 class="text-center">Welcome to little Bokusen</h1>
 
 
 @endsection

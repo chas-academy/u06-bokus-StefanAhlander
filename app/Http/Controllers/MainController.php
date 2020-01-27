@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    public function welcomePage() {
+    public function show() {
         return view("welcome", []);
     }
 }

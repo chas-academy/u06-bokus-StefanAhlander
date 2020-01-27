@@ -11,10 +11,14 @@
 |
 */
 
-Route::get('/', 'MainController@welcomePage');
+Route::get('/', 'MainController@show');
 
 Route::get('/search', 'BookController@search');
 
-Route::get('/buy', 'CartController@buy');
+Route::get('/search_results', 'BookController@find');
+
+Route::post('/add', 'CartController@update');
+
+Route::get('/buy', 'CartController@show');
 
 Route::get('/clear', 'CartController@clear');
