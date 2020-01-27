@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MainController@welcomePage');
+
+Route::get('/search', 'BookController@search');
+
+Route::get('/buy', 'CartController@buy');
+
+Route::get('/clear', 'CartController@clear');
