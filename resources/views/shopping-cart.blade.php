@@ -38,7 +38,8 @@
         </tr>
       </tbody>
     </table>
+@if(count($books) > 0)
     <button class="btn btn-primary" type="submit">Buy</button>
-    
+@endif 
   </form>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CartModel;
 
+
 class CartController extends Controller
 {
     
@@ -16,7 +17,7 @@ class CartController extends Controller
             $total += $book->price * $book->amount;
         }
 
-        return view("shopping-cart", ['books' => $books, 'total' => $total]);    
+        return view("shopping-cart", ['books' => $books, 'total' => $total, 'cart' => $this->getCart()]);    
     }
 
     public function update() {
@@ -42,13 +43,18 @@ class CartController extends Controller
         $cartModel = new CartModel();
         $cartModel->deleteCart();
 
-        return view('deleted-cart', []);
+        return view('deleted-cart', ['cart' => $this->getCart()]);
     }
 
     public function checkout() {
         $cartModel = new CartModel();
         $cartModel->deleteCart();
 
-        return view('checked-out', []);
+        return view('checked-out', ['cart' => $this->getCart()]);
+    }
+
+    public function getCart() {
+        $cartModel = new CartModel();
+        return $cartModel->getItemCount();
     }
 }

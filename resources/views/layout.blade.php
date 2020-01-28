@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+  <script src="https://kit.fontawesome.com/bd5bbba34e.js" crossorigin="anonymous"></script>
   <title>
     @yield('title')
   </title>
@@ -13,7 +13,7 @@
 <body>
   <div class="container">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
           <a class="nav-link" href="/">Home</a>
         </li>
@@ -27,8 +27,10 @@
           <a class="nav-link" href="/clear">Clear</a>
         </li>
       </ul>
+      <span class="navbar-text">
+        <a href="/buy"><i class="fas fa-shopping-cart"></i> {{ ($cart > 0) ? $cart : '' }}</a>
+      </span>
     </nav>
-
 
   @yield('content')
   </div>

@@ -24,3 +24,4 @@ Route::get('/buy', 'CartController@index');
 Route::get('/clear', 'CartController@destroy');
 
 Route::get('/check_out', 'CartController@checkout');
+?>

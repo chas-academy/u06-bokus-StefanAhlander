@@ -26,9 +26,7 @@ class CartModel extends Model
         DB::table('cart')->delete();
     }
 
-    public function getNumberOfItems() {
-        return DB::table('cart')->count('amount');
+    public function getItemCount() {
+        return DB::table('cart')->sum('amount');
     }
-
-
 }
