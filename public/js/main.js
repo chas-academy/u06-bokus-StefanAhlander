@@ -1,3 +1,7 @@
+/** Some JS to add functionality for adding and subtracting books from a list of books.
+ *  The event handlers updates the value property of the corresponding (sibling) input field.
+ */
+
 let subtractBtn = document.querySelectorAll(".subtract_book");
 let addBtn = document.querySelectorAll(".add_book");
 

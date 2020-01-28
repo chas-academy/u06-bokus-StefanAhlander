@@ -5,6 +5,15 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+/** Model handeling all database access regarding the cart table.
+ *  The method getAll will display everything in the cart.
+ *  updateCart will add rows to the cart table representing items in the cart.
+ *  deleteCart will empty the table/cart.
+ *  getItemCount will return the number of items in the cart by counting the
+ *  amount of each book represented. Used for showing content of the cart in
+ *  the navbar.
+ */
+
 class CartModel extends Model
 {
     public function getAll() {

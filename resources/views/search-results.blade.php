@@ -7,7 +7,7 @@
 @section('content')
   <h1 class="text-center">Search results</h1>
 
-  <form method="post" action="/cart">
+  <form method="POST" action="/cart">
   @csrf
     <table class="table">
       <thead class="thead-dark">
@@ -20,6 +20,7 @@
         </tr>
       </thead>
       <tbody>
+<!-- Iterate over the books-collection and render the results. -->
 @foreach($books as $book)
         <tr>
           <td>{{ $book->id }}</td>
@@ -36,9 +37,12 @@
 
       </tbody>
     </table>
+<!-- Check if the book-collection is not empty. If content render add to cart button. -->
 @if($books->count() > 0)
     <button class="btn btn-primary" type="submit">Add to cart</button>
 @endif
   </form>
 @endsection
+<!-- Load javascript to handle adding and subtracting books. Load script defered so that the page has time to render before the
+      script is run. -->
   <script src="/js/main.js" defer></script>

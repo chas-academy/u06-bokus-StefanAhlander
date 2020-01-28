@@ -4,6 +4,14 @@ namespace App\Http\Controllers;
 
 use App\CartModel;
 
+/** Controller handeling all logic regarding the shopping cart.
+ *  The index method will call the Model and then pass the result to the view.
+ *  update will iterate over all the books passed in the form, check if any of them are
+ *  ordered and how many, for every ordered book the updateCart method of the Model will be called.
+ *  destroy will empty the cart.
+ *  checkout will empty the cart and display a shippment message.
+ *  
+ */
 
 class CartController extends Controller
 {
@@ -12,6 +20,7 @@ class CartController extends Controller
         $cartModel = new CartModel();
         $books = $cartModel->getAll();
 
+        /** Calculate total cost of all books in the cart. */
         $total = 0;
         foreach($books as $book) {
             $total += $book->price * $book->amount;
@@ -29,6 +38,9 @@ class CartController extends Controller
         $list = request()->all();
         $cartModel = new CartModel();
 
+        /** Iterate over all form fields. If a field contains a positive value for amount ordered
+         *  pass it on the the Model to add to the cart.
+         */
         foreach ($list as $key => $value) {
             if($key === "_token") continue;
             if($value > 0) {

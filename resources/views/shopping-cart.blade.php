@@ -38,6 +38,7 @@
         </tr>
       </tbody>
     </table>
+<!-- Check to see if there are books in the cart. If so render buy button. -->
 @if(count($books) > 0)
     <button class="btn btn-primary" type="submit">Buy</button>
 @endif 
