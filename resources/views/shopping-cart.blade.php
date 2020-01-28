@@ -7,7 +7,7 @@
 @section('content')
   <h1 class="text-center">Your shopping cart</h1>
 
-  <form method="post" action="/check-out">
+  <form method="GET" action="/check_out">
   @csrf
     <table class="table">
       <thead class="thead-dark">
@@ -29,7 +29,13 @@
           <td>{{ $book->amount }}</td>
         </tr>
 @endforeach
-/** Add total */
+        <tr>
+          <td><strong>Total</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>{{ $total }} SEK</strong></td>
+        </tr>
       </tbody>
     </table>
     <button class="btn btn-primary" type="submit">Buy</button>

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
+use App\BookModel;
 
 class BookController extends Controller
 {
@@ -16,13 +14,8 @@ class BookController extends Controller
         $author = request('author');
         $title = request('title');
 
-        $books = DB::table('books')
-                    ->whereRaw('LOWER(author) like ?', ['%'.strtolower($author).'%'])
-                    ->orWhereRaw('LOWER(title) like ?', ['%'.strtolower($title).'%'])
-                    ->get();
+        $bookModel = new BookModel();
  
-        return view("search-results", ['books' => $books]);
-    }
-
-    
+        return view("search-results", ['books' => $bookModel->find($author, $title)]);
+    } 
 }

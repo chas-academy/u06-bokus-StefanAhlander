@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\CartModel;
 
 class CartController extends Controller
 {
+    
+    public function index() {
+        $cartModel = new CartModel();
+        $books = $cartModel->getAll();
+
+        $total = 0;
+        foreach($books as $book) {
+            $total += $book->price * $book->amount;
+        }
+
+        return view("shopping-cart", ['books' => $books, 'total' => $total]);    
+    }
+
     public function update() {
         request()->validate([
             ['book_id' => 'integer'],
@@ -14,26 +26,29 @@ class CartController extends Controller
         ]);
 
         $list = request()->all();
+        $cartModel = new CartModel();
 
         foreach ($list as $key => $value) {
             if($key === "_token") continue;
             if($value > 0) {
-                DB::table('cart')
-                    ->updateOrInsert(
-                        ['book_id' => $key],
-                        ['amount' => $value]
-                    );
+                $cartModel->updateCart($key, $value);
             }
         }
 
         return redirect('/buy');
     }
 
-    public function show() {
-        $books = DB::table('cart')
-        ->join('books', 'cart.book_id', '=', 'books.id')
-        ->select('books.id', 'books.author', 'books.title', 'books.price', 'cart.amount')
-        ->get();
+    public function destroy() {
+        $cartModel = new CartModel();
+        $cartModel->deleteCart();
 
-        return view("shopping-cart", ['books' => $books]);    }
+        return view('deleted-cart', []);
+    }
+
+    public function checkout() {
+        $cartModel = new CartModel();
+        $cartModel->deleteCart();
+
+        return view('checked-out', []);
+    }
 }

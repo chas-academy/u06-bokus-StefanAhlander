@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'MainController@show');
+Route::get('/', 'MainController@index');
 
 Route::get('/search', 'BookController@search');
 
@@ -19,6 +19,8 @@ Route::get('/search_results', 'BookController@find');
 
 Route::post('/add', 'CartController@update');
 
-Route::get('/buy', 'CartController@show');
+Route::get('/buy', 'CartController@index');
 
-Route::get('/clear', 'CartController@clear');
+Route::get('/clear', 'CartController@destroy');
+
+Route::get('/check_out', 'CartController@checkout');
