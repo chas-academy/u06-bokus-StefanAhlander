@@ -14,21 +14,25 @@
   <div class="container">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
-          <a class="nav-link" href="/">Home</a>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/">Home</a>
         </li>
-        <li class="nav-item {{ Request::is('search') ? 'active' : '' }}">
-          <a class="nav-link" href="/search">Search</a>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/search">Search</a>
         </li>
-        <li class="nav-item {{ Request::is('buy') ? 'active' : '' }}">
-          <a class="nav-link" href="/buy">Buy</a>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/cart">Buy</a>
         </li>
-        <li class="nav-item {{ Request::is('clear') ? 'active' : '' }}">
-          <a class="nav-link" href="/clear">Clear</a>
+        <li class="nav-item">
+          <form action="/cart" method="POST">
+            @csrf
+            <input type="hidden" name="_method" value="delete" />
+            <button class="nav-link btn btn-link text-white" type="submit">Clear</button>
+          </form>
         </li>
       </ul>
       <span class="navbar-text">
-        <a href="/buy"><i class="fas fa-shopping-cart"></i> {{ ($cart > 0) ? $cart : '' }}</a>
+        <a href="/cart"><i class="fas fa-shopping-cart"></i> {{ ($cart > 0) ? $cart : '' }}</a>
       </span>
     </nav>
 

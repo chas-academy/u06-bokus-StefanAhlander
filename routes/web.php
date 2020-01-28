@@ -17,11 +17,11 @@ Route::get('/search', 'BookController@search');
 
 Route::get('/search_results', 'BookController@find');
 
-Route::post('/add', 'CartController@update');
+Route::post('/cart', 'CartController@update');
 
-Route::get('/buy', 'CartController@index');
+Route::get('/cart', 'CartController@index');
 
-Route::get('/clear', 'CartController@destroy');
+Route::delete('/cart', 'CartController@destroy');
 
 Route::get('/check_out', 'CartController@checkout');
 ?>

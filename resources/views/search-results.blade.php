@@ -7,7 +7,7 @@
 @section('content')
   <h1 class="text-center">Search results</h1>
 
-  <form method="post" action="/add">
+  <form method="post" action="/cart">
   @csrf
     <table class="table">
       <thead class="thead-dark">
@@ -36,8 +36,9 @@
 
       </tbody>
     </table>
+@if($books->count() > 0)
     <button class="btn btn-primary" type="submit">Add to cart</button>
-    
+@endif
   </form>
 @endsection
   <script src="/js/main.js" defer></script>

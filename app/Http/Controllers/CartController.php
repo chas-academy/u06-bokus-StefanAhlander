@@ -36,7 +36,7 @@ class CartController extends Controller
             }
         }
 
-        return redirect('/buy');
+        return redirect('/cart');
     }
 
     public function destroy() {
