@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 /** Migrations for creating the "books" table for holding all the books in the "store".
  */
@@ -23,7 +24,7 @@ class CreateBooksTable extends Migration
             $table->decimal('price');
         });
  
-/** Adding data to the table to have something to work with. */
+        /** Adding data to the table to have something to work with. */
         DB::table('books')->insert(['author' => 'Chris Ryan', 'title' => 'The One That Got Away', 'price' => 95]);
         DB::table('books')->insert(['author' => 'Nora Roberts', 'title' => 'Förövarna', 'price' => 169]);
         DB::table('books')->insert(['author' => 'Johanna Elomaa', 'title' => 'Grottdykaren: Mikko Paasi och den dramatiska räddningsoperationen', 'price' => 189]);

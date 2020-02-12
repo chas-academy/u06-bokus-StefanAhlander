@@ -25,6 +25,9 @@
           <a class="nav-link text-white" href="/cart">Buy</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link text-white" href="/recommendations">Recommendations</a>
+        </li>
+        <li class="nav-item">
             <!-- Use form with hidden input to be able to execute a DELETE request. -->
           <form action="/cart" method="POST">
             @csrf

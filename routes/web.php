@@ -17,6 +17,8 @@ Route::get('/search', 'BookController@search');
 
 Route::get('/search_results', 'BookController@find');
 
+Route::get('/recommendations', 'BookController@tips');
+
 /** The rout for updating or adding books to the cart fills two purposes. Adding to an empty
  *  cart or updating an existing cart. Adding to an empty cart is the same as creating a new 
  *  cart and a POST request is the right choice. For updating an existing cart PUT would be the
@@ -29,4 +31,9 @@ Route::get('/cart', 'CartController@index');
 Route::delete('/cart', 'CartController@destroy');
 
 Route::get('/check_out', 'CartController@checkout');
+
+Route::get('/books', 'BookController@index');
+
+Route::get('/books/{id}', 'BookController@show');
+
 ?>
