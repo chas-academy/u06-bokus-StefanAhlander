@@ -16,14 +16,16 @@ use Illuminate\Support\Facades\DB;
 
 class CartModel extends Model
 {
-    public function getAll() {
+    public function getAll()
+    {
         return DB::table('cart')
         ->join('books', 'cart.book_id', '=', 'books.id')
         ->select('books.id', 'books.author', 'books.title', 'books.price', 'cart.amount')
         ->get();
     }
 
-    public function updateCart(String $key, $value) {
+    public function updateCart(String $key, $value)
+    {
         DB::table('cart')
             ->updateOrInsert(
                 ['book_id' => $key],
@@ -31,11 +33,13 @@ class CartModel extends Model
             );
     }
 
-    public function deleteCart() {
+    public function deleteCart()
+    {
         DB::table('cart')->delete();
     }
 
-    public function getItemCount() {
+    public function getItemCount()
+    {
         return DB::table('cart')->sum('amount');
     }
 }

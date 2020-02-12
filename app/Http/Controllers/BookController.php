@@ -21,6 +21,7 @@ class BookController extends Controller
         $results = $bookModel->getAll();
         $arr = [
             'source' => 'Stefans Bokus API v1.0',
+            'count' => 0,
             'results' => []
         ];
         
@@ -32,6 +33,8 @@ class BookController extends Controller
             $temp[] = ["link" => '/books/'.$result->id];    
             $arr['results'][] = $temp;
         }
+
+        $arr['count'] = count($arr['results']);
 
         return json_encode($arr, JSON_UNESCAPED_SLASHES);
     }

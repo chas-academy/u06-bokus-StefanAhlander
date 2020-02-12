@@ -10,26 +10,27 @@ use App\CartModel;
  *  ordered and how many, for every ordered book the updateCart method of the Model will be called.
  *  destroy will empty the cart.
  *  checkout will empty the cart and display a shippment message.
- *  
+ *
  */
 
 class CartController extends Controller
 {
-    
-    public function index() {
+    public function index()
+    {
         $cartModel = new CartModel();
         $books = $cartModel->getAll();
 
         /** Calculate total cost of all books in the cart. */
         $total = 0;
-        foreach($books as $book) {
+        foreach ($books as $book) {
             $total += $book->price * $book->amount;
         }
 
-        return view("shopping-cart", ['books' => $books, 'total' => $total, 'cart' => $this->getCart()]);    
+        return view("shopping-cart", ['books' => $books, 'total' => $total, 'cart' => $this->getCart()]);
     }
 
-    public function update() {
+    public function update()
+    {
         request()->validate([
             ['book_id' => 'integer'],
             ['amount' => 'integer']
@@ -42,8 +43,10 @@ class CartController extends Controller
          *  pass it on the the Model to add to the cart.
          */
         foreach ($list as $key => $value) {
-            if($key === "_token") continue;
-            if($value > 0) {
+            if ($key === "_token") {
+                continue;
+            }
+            if ($value > 0) {
                 $cartModel->updateCart($key, $value);
             }
         }
@@ -51,21 +54,24 @@ class CartController extends Controller
         return redirect('/cart');
     }
 
-    public function destroy() {
+    public function destroy()
+    {
         $cartModel = new CartModel();
         $cartModel->deleteCart();
 
         return view('deleted-cart', ['cart' => $this->getCart()]);
     }
 
-    public function checkout() {
+    public function checkout()
+    {
         $cartModel = new CartModel();
         $cartModel->deleteCart();
 
         return view('checked-out', ['cart' => $this->getCart()]);
     }
 
-    public function getCart() {
+    public function getCart()
+    {
         $cartModel = new CartModel();
         return $cartModel->getItemCount();
     }
