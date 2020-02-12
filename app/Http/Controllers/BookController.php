@@ -15,6 +15,10 @@ use GuzzleHttp\Client;
 
 class BookController extends Controller
 {
+    /** 
+     * Fetchees all rows from the book table in the database
+     * and returns it as JSON.
+     */
     public function index()
     {
         $bookModel = new BookModel();
@@ -39,6 +43,10 @@ class BookController extends Controller
         return json_encode($arr, JSON_UNESCAPED_SLASHES);
     }
     
+    /** 
+     * Fetchees one row from the book table in the database
+     * and returns it as JSON.
+     */
     public function show($id)
     {
         $bookModel = new BookModel();
@@ -57,6 +65,10 @@ class BookController extends Controller
         return json_encode($arr, JSON_UNESCAPED_SLASHES);
     }
 
+    /**
+     * Makes an API-call to the New York Times and gets their list of best selling books. 
+     * 
+     */
     public function tips()
     {
         $api_key = config('api.api-key');
