@@ -32,8 +32,8 @@ Route::delete('/cart', 'CartController@destroy');
 
 Route::get('/check_out', 'CartController@checkout');
 
-Route::get('/books', 'BookController@index');
+Route::get('/api/v1.0/books', 'BookController@index');
 
-Route::get('/books/{id}', 'BookController@show');
+Route::get('/api/v1.0/books/{id}', 'BookController@show');
 
 ?>

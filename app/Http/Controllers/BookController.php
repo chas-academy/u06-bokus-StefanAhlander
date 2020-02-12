@@ -15,15 +15,44 @@ use GuzzleHttp\Client;
 
 class BookController extends Controller
 {
-    /*     public function index()
-        {
-    
+    public function index()
+    {
+        $bookModel = new BookModel();
+        $results = $bookModel->getAll();
+        $arr = [
+            'source' => 'Stefans Bokus API v1.0',
+            'results' => []
+        ];
+        
+        foreach ($results as $result) {
+            $temp[] = ["id" => $result->id];    
+            $temp[] = ["author" => $result->author];    
+            $temp[] = ["title" => $result->title];    
+            $temp[] = ["price" => $result->price];    
+            $temp[] = ["link" => '/books/'.$result->id];    
+            $arr['results'][] = $temp;
         }
+
+        return json_encode($arr, JSON_UNESCAPED_SLASHES);
+    }
     
-        public function show(id)
-        {
-    
-        } */
+    public function show($id)
+    {
+        $bookModel = new BookModel();
+        $result = $bookModel->get($id);
+        $arr = [
+            'source' => 'Stefans Bokus API v1.0',
+            'results' => []
+        ];
+        
+        $temp[] = ["id" => $result->id];    
+        $temp[] = ["author" => $result->author];    
+        $temp[] = ["title" => $result->title];    
+        $temp[] = ["price" => $result->price];    
+        $arr['results'][] = $temp;
+ 
+        return json_encode($arr, JSON_UNESCAPED_SLASHES);
+    }
 
     public function tips()
     {
